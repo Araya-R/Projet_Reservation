@@ -32,6 +32,15 @@ class Reservation
         $this->bookedAt = new DateTime();
         $this->status = "CART";
     }
+
+    //Si la réservation est encore en statut "CART"
+    //Alors on passe au statut "CANCELLED"
+    // Cela évite d'annuler une réservation déjà confirmée ou déjà annulée 
+    public function cancel(){
+        if($this->status === "CART"){
+        $this->status= "CANCELLED";
+        }
+    }
 }
 
 $name = "Araya";
@@ -43,5 +52,8 @@ $cleaning= true;
 //Appel du constructeur
 // Grâce à ça, on peut créer autant de réservations différentes et chacune aura ses propres valeurs
 $Reservation = new Reservation($name, $location, $start,$end, $cleaning);
+
+//Appel à la fonction cancel()
+$Reservation -> cancel();
 
 var_dump($Reservation);
