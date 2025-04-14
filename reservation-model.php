@@ -1,6 +1,7 @@
 <?php
 
-class Reservation{
+class Reservation
+{
     public $name;
     public $location;
     public $startDate;
@@ -10,20 +11,26 @@ class Reservation{
     public $status;
     public $bookedAt;
     public $cleaningOption;
+
+    public function __construct()
+    {
+        //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
+        //ici cela signifie la propriété name de cet objet
+        $this->name = "Araya";
+        $this->location = "Bahamas";
+        $this->startDate = new DateTime("2025-06-01");
+        $this->endDate = new DateTime("2025-06-30");
+        $this->nightPrice = 100;
+        $this->cleaningOption = true;
+
+        //valeurs calculées automatiquement
+        $totalPrice = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24) * $this->nightPrice) + 50;
+        $this->totalPrice = $totalPrice;
+        $this->bookedAt = new DateTime();
+        $this->status = "CART";
+    }
 }
 
 $Reservation = new Reservation();
 
-$Reservation->name = "Araya";
-$Reservation->location = "Bahamas";
-$Reservation->startDate= new DateTime(2025-06-01);
-$Reservation->endDate = new DateTime("2025-06-31");
-$Reservation->nightPrice= 100;
-$Reservation->cleaningOption = true;
-
-$totalPrice=(($Reservation->endDate->getTimestamp()-$Reservation->startDate->getTimestamp()) /(3600*24)* $Reservation->nightPrice) +50;
-$Reservation->totalPrice=$totalPrice;
-$Reservation->bookedAt=new DateTime();
-$Reservation->status = "CART";
-
-var_dump($totalPrice);
+var_dump($Reservation);
