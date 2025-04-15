@@ -3,7 +3,6 @@
 class Reservation
 {
     public $name;
-    public $location;
     public $startDate;
     public $endDate;
     public $totalPrice;
@@ -15,28 +14,46 @@ class Reservation
     public $paidAt;
     public $comment;
     public $leavecommentAt;
+    public $roomType;
+
+    //tableau des prix par Bedroom Type
+
+    private $roomPrices =[
+        'vue-mer' => 150,
+        'Suite' => 100,
+        'Standard' => 50,
+        'Double' => 70,
+    ];
 
 
     //Pour rendre la classe plus flexible on donne au constructeur des paramètres
-    public function __construct($name, $location, $startDate, $endDate, $cleaningOption)
+    public function __construct($name, $startDate, $endDate, $cleaningOption,$roomType)
     {
         //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
         //ici cela signifie la propriété name de cet objet
 
         //$name vient du paramètre passé par l'utilisateur
         $this->name = $name;
-        $this->location = $location;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->cleaningOption = $cleaningOption;
+        $this->roomType=$roomType;
        
-        $this->nightPrice = 100;
-        //valeurs calculées automatiquement
-        $totalPrice = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24) * $this->nightPrice) + 50;
-        $this->totalPrice = $totalPrice;
+        //Vérifie si le type de chambre est valide, sinon utilise un prix par défaut
+        $this->nightPrice = isset($this->roomPrices[$roomType])? $this->roomPrices[$roomType]:80;
+
+        //calcul du prix total
+        $nights = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24));
+        $this->totalPrice = $nights*$this->nightPrice;
+        
+        //ajout le cleaning si activé 
+        if ($this->cleaningOption){
+            $this->totalPrice += 50;
+        }
+        
         $this->bookedAt = new DateTime();
         $this->status = "CART";
-        
+
         //initialisation des dates 
         $this->cancelledAt= null;
         $this->paidAt= null;
