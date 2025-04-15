@@ -11,6 +11,11 @@ class Reservation
     public $status;
     public $bookedAt;
     public $cleaningOption;
+    public $cancelledAt;
+    public $paidAt;
+    public $comment;
+    public $leavecommentAt;
+
 
     //Pour rendre la classe plus flexible on donne au constructeur des paramètres
     public function __construct($name, $location, $startDate, $endDate, $cleaningOption)
@@ -24,6 +29,8 @@ class Reservation
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->cleaningOption = $cleaningOption;
+       
+
 
         $this->nightPrice = 100;
         //valeurs calculées automatiquement
@@ -36,10 +43,27 @@ class Reservation
     //Si la réservation est encore en statut "CART"
     //Alors on passe au statut "CANCELLED"
     // Cela évite d'annuler une réservation déjà confirmée ou déjà annulée 
+    //On stock la date de l'annulement
     public function cancel(){
         if($this->status === "CART"){
         $this->status= "CANCELLED";
+        $this->cancelledAt = new DateTime();
         }
+    }
+
+    public function payment (){
+        if($this->status === "CART"){
+            $this->status= "PAID";
+            $this->paidAt = new DateTime();
+        }
+
+    }
+    public function leaveComment($comment){
+        if($this->status === "PAID"){
+            $this->comment= $comment;
+            $this->leavecommentAt=new DateTime();
+        }
+
     }
 }
 
@@ -54,6 +78,7 @@ $cleaning= true;
 $Reservation = new Reservation($name, $location, $start,$end, $cleaning);
 
 //Appel à la fonction cancel()
-$Reservation -> cancel();
+$Reservation->payment();
+$Reservation->leaveComment("Bon Séjours");
 
 var_dump($Reservation);
