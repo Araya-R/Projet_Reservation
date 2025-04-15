@@ -18,7 +18,7 @@ class Reservation
 
     //tableau des prix par Bedroom Type
 
-    private $roomPrices =[
+    public $roomPrices =[
         'vue-mer' => 150,
         'Suite' => 100,
         'Standard' => 50,
@@ -29,6 +29,10 @@ class Reservation
     //Pour rendre la classe plus flexible on donne au constructeur des paramètres
     public function __construct($name, $startDate, $endDate, $cleaningOption,$roomType)
     {
+        if(strlen($name)< 3){
+            throw new Exception ("le nombre de caractère doit avoir plus de deux caractères.");
+        }
+
         //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
         //ici cela signifie la propriété name de cet objet
 

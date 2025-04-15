@@ -2,10 +2,8 @@
 require_once ('../view/home-view.php');
 require_once('../model/reservation-model.php');
 
-
-//je crée une variable $message qui est vide
-$message="";
-
+$error="";
+$Reservation=null;
 //je vérifie si le formulaire a bien été envoyé
 if($_SERVER["REQUEST_METHOD"]=== "POST"){
 
@@ -25,9 +23,18 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
         $cleaningOption = false;
     }
 
-//Création d'une réservation 
-$Reservation = new Reservation($name, $startDate,$endDate, $cleaningOption, $roomType);
+    try{
+        //Création d'une réservation 
+        $Reservation = new Reservation($name, $startDate,$endDate, $cleaningOption, $roomType);
+        
+        //Enregistrement dans une base 
+        persistReservation($Reservation);
+
+    }catch (Exception $e){
+        $error= $e->getMessage();
+    }
 }
+
 
 require_once ('../view/create-reservation-view.php');
 
