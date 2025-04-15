@@ -9,7 +9,17 @@ function persistReservation ($Reservation){
 }
 
 function findReservationForUser(){
+    
+    //on stock les données grâce à la session
     session_start();
-    return $_SESSION["Reservation"];
 
+    //on vérifie si la clé Reservation existe dans $_SESSION
+    if(array_key_exists('Reservation',$_SESSION)){
+
+        //si oui renvoie la réservation stocké 
+        return $_SESSION["Reservation"];
+    }else{
+        //si non, renvoie null
+        return null;
+    }
 }

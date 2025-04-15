@@ -1,9 +1,10 @@
 <?php 
 require_once ('../view/home-view.php');
 require_once('../model/reservation-model.php');
+require_once('../model/reservation-repository.php');
 
 $error="";
-$Reservation=null;
+
 //je vérifie si le formulaire a bien été envoyé
 if($_SERVER["REQUEST_METHOD"]=== "POST"){
 
@@ -35,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
     }
 }
 
+$reservationForUser= findReservationForUser();
 
 require_once ('../view/create-reservation-view.php');
 
