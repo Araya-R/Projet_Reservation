@@ -30,20 +30,25 @@ class Reservation
         $this->endDate = $endDate;
         $this->cleaningOption = $cleaningOption;
        
-
-
         $this->nightPrice = 100;
         //valeurs calculées automatiquement
         $totalPrice = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24) * $this->nightPrice) + 50;
         $this->totalPrice = $totalPrice;
         $this->bookedAt = new DateTime();
         $this->status = "CART";
+        
+        //initialisation des dates 
+        $this->cancelledAt= null;
+        $this->paidAt= null;
+        $this->comment= null;
+        $this->leavecommentAt= null;
     }
 
     //Si la réservation est encore en statut "CART"
     //Alors on passe au statut "CANCELLED"
     // Cela évite d'annuler une réservation déjà confirmée ou déjà annulée 
     //On stock la date de l'annulement
+    //annuler une réservation
     public function cancel(){
         if($this->status === "CART"){
         $this->status= "CANCELLED";
@@ -51,6 +56,7 @@ class Reservation
         }
     }
 
+    //passer une réservation au statut PAID
     public function payment (){
         if($this->status === "CART"){
             $this->status= "PAID";
@@ -58,27 +64,16 @@ class Reservation
         }
 
     }
+
+    //ajouter un commentaire à la réservation
     public function leaveComment($comment){
         if($this->status === "PAID"){
             $this->comment= $comment;
             $this->leavecommentAt=new DateTime();
+        }else {
+            echo "Impossible de laisser un commentaire tant que la réservation n'est pas payée.";
         }
 
     }
 }
 
-$name = "Araya";
-$location="Bahamas";
-$start = new DateTime("2025-06-01");
-$end = new DateTime("2025-06-21");
-$cleaning= true;
-
-//Appel du constructeur
-// Grâce à ça, on peut créer autant de réservations différentes et chacune aura ses propres valeurs
-$Reservation = new Reservation($name, $location, $start,$end, $cleaning);
-
-//Appel à la fonction cancel()
-$Reservation->payment();
-$Reservation->leaveComment("Bon Séjours");
-
-var_dump($Reservation);
