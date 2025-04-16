@@ -10,8 +10,10 @@
         <nav>
             <ul>
                 <li><a href="http://localhost:8888/Projet_Reservation/controller/create-reservation-controller.php">Créer une réservation</a></li>
-                <li><a href="http://localhost:8888/Projet_Reservation/controller/cancel-reservation-controller.php">Annuler une réservation</a></li>
                 <li><a href="http://localhost:8888/Projet_Reservation/controller/pay-reservation-controller.php">Payer une réservation</a></li>
+                <li><a href="http://localhost:8888/Projet_Reservation/controller/cancel-reservation-controller.php">Annuler une réservation</a></li>
+                <li><a href="http://localhost:8888/Projet_Reservation/controller/comment-reservation-controller.php">Laisser un commentaire</a></li>
+
             </ul>
         </nav>
     </header>

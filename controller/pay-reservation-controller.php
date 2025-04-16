@@ -10,7 +10,7 @@ $message = "";
 
 //je vérifie si le formulaire a bien été envoyé
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
+    
     if ($reservationForUser) {
         
         //Payer la réservation

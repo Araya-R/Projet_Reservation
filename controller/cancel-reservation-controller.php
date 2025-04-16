@@ -1,35 +1,38 @@
 <?php
-require_once ('../view/home-view.php');
+require_once('../view/home-view.php');
 require_once('../model/reservation-model.php');
 require_once('../model/reservation-repository.php');
 
 //j'utilise la fonction findReservationForUser 
 //afin de récupérer la réservation crée par l'user 
 //celle ci est stockée ensuite dans la variable $reservationForUser
-$reservationForUser= findReservationForUser();
+$reservationForUser = findReservationForUser();
 
-$message="";
+$message = "";
 //je vérifie si le formulaire a bien été envoyé
-if($_SERVER["REQUEST_METHOD"]=== "POST"){
-    
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     //je récupère la réservation 
-    $reservationForUser= findReservationForUser();
+    $reservationForUser = findReservationForUser();
 
-    if($reservationForUser){
+    if ($reservationForUser) {
 
-        //annuler la réservation
-        //la fonction cancel () existe déjà dans reservation-model
-        $reservationForUser->cancel();
+        try {
+            //annuler la réservation
+            //la fonction cancel () existe déjà dans reservation-model
+            $reservationForUser->cancel();
 
-        //réenregistrer dans la session
-        //la fonction persistReservation existe dans reservation-repository
-        persistReservation($reservationForUser);
+            //réenregistrer dans la session
+            //la fonction persistReservation existe dans reservation-repository
+            persistReservation($reservationForUser);
 
-        //afficher un message
-        $message="La réservation a bien été annulée.";
-
-    }else{
-        $message="Aucune réservation à annuler.";
+            //afficher un message
+            $message = "La réservation a bien été annulée.";
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+        }
+    } else {
+        $message = "Aucune réservation à annuler.";
     }
 }
 

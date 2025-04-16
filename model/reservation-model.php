@@ -71,9 +71,13 @@ class Reservation
     //On stock la date de l'annulement
     //annuler une réservation
     public function cancel(){
+
+        //vérifier si la réservation est en statut CART avant de l'annuler
         if($this->status === "CART"){
         $this->status= "CANCELLED";
         $this->cancelledAt = new DateTime();
+        }else{
+            throw new Exception("La réservation ne peut pas être annulée, elle n'est pas dans l'état 'CART'.");
         }
     }
 

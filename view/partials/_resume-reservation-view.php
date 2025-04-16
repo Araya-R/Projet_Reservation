@@ -7,6 +7,9 @@
 			<p>Dates : <?php echo $reservationForUser->startDate->format('y-m-d'); ?> / <?php echo $reservationForUser->endDate->format('y-m-d'); ?></p>
 			<p>Prix total : <?php echo $reservationForUser->totalPrice; ?></p>
 			<p>Cleaning Option ? : <?php echo $reservationForUser->cleaningOption ? "oui" : "non"; ?></p>
+			<p>Status: <?php echo $reservationForUser->status; ?></p>
+			<p>Commentaire: <?php echo $reservationForUser->comment ; ?></p>
+
 
 		</div>
 	<?php } ?>
