@@ -83,7 +83,6 @@ class Reservation
             $this->status= "PAID";
             $this->paidAt = new DateTime();
         }
-
     }
 
     //ajouter un commentaire à la réservation

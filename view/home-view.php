@@ -11,7 +11,7 @@
             <ul>
                 <li><a href="http://localhost:8888/Projet_Reservation/controller/create-reservation-controller.php">Créer une réservation</a></li>
                 <li><a href="http://localhost:8888/Projet_Reservation/controller/cancel-reservation-controller.php">Annuler une réservation</a></li>
-                <li>lien 3</li>
+                <li><a href="http://localhost:8888/Projet_Reservation/controller/pay-reservation-controller.php">Payer une réservation</a></li>
             </ul>
         </nav>
     </header>

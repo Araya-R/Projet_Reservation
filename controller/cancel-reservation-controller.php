@@ -8,7 +8,7 @@ require_once('../model/reservation-repository.php');
 //celle ci est stockée ensuite dans la variable $reservationForUser
 $reservationForUser= findReservationForUser();
 
-
+$message="";
 //je vérifie si le formulaire a bien été envoyé
 if($_SERVER["REQUEST_METHOD"]=== "POST"){
     
@@ -25,10 +25,11 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
         //la fonction persistReservation existe dans reservation-repository
         persistReservation($reservationForUser);
 
-        //afficher un message 
-        echo "La réservation a bien été annulée.";
+        //afficher un message
+        $message="La réservation a bien été annulée.";
+
     }else{
-        echo "Aucune réservation à annuler.";
+        $message="Aucune réservation à annuler.";
     }
 }
 
