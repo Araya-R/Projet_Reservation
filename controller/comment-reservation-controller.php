@@ -15,6 +15,7 @@ $comment="";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($reservationForUser) {
+        
         //récupérer le commentaire soumis par l'user
         $comment = isset($_POST['comment'])? $_POST['comment']: "";
 

@@ -9,7 +9,5 @@
 			<p>Cleaning Option ? : <?php echo $reservationForUser->cleaningOption ? "oui" : "non"; ?></p>
 			<p>Status: <?php echo $reservationForUser->status; ?></p>
 			<p>Commentaire: <?php echo $reservationForUser->comment ; ?></p>
-
-
 		</div>
 	<?php } ?>

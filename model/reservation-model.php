@@ -77,7 +77,7 @@ class Reservation
         $this->status= "CANCELLED";
         $this->cancelledAt = new DateTime();
         }else{
-            throw new Exception("La réservation ne peut pas être annulée, elle n'est pas dans l'état 'CART'.");
+            throw new Exception("La réservation ne peut pas être annulée, car elle est déjà payée .");
         }
     }
 
@@ -95,7 +95,8 @@ class Reservation
             $this->comment= $comment;
             $this->leavecommentAt=new DateTime();
         }else {
-            echo "Impossible de laisser un commentaire tant que la réservation n'est pas payée.";
+            throw new Exception("Impossible de laisser un commentaire tant que la réservation n'est pas payée.");
+            
         }
 
     }
