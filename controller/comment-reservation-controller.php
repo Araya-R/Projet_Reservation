@@ -2,6 +2,7 @@
 require_once('../view/home-view.php');
 require_once('../model/reservation-model.php');
 require_once('../model/reservation-repository.php');
+require_once('../config.php');
 
 //récupérer la réservation de l'user depuis la session
 

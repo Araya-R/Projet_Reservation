@@ -2,6 +2,7 @@
 require_once('../view/home-view.php');
 require_once('../model/reservation-model.php');
 require_once('../model/reservation-repository.php');
+require_once('../config.php');
 
 //j'utilise la fonction findReservationForUser 
 //afin de récupérer la réservation crée par l'user 

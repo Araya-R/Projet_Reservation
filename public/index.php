@@ -1,4 +1,5 @@
 <?php
+require_once('../config.php');
 
 // URL demandée
 $requestUri = $_SERVER['REQUEST_URI'];

@@ -10,9 +10,9 @@
         <nav>
             <ul>
                 <li><a href="http://localhost:8888/Projet_Reservation/public/nouvelle-reservation">Créer une réservation</a></li>
-                <li><a href="http://localhost:8888/Projet_Reservation/controller/payer-reservation">Payer une réservation</a></li>
-                <li><a href="http://localhost:8888/Projet_Reservation/controller/annuler-reservation">Annuler une réservation</a></li>
-                <li><a href="http://localhost:8888/Projet_Reservation/controller/commenter-reservation">Laisser un commentaire</a></li>
+                <li><a href="http://localhost:8888/Projet_Reservation/public/payer-reservation">Payer une réservation</a></li>
+                <li><a href="http://localhost:8888/Projet_Reservation/public/annuler-reservation">Annuler une réservation</a></li>
+                <li><a href="http://localhost:8888/Projet_Reservation/public/commenter-reservation">Laisser un commentaire</a></li>
 
             </ul>
         </nav>
